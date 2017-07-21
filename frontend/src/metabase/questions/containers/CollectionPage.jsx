@@ -14,8 +14,8 @@ import { loadCollections } from "../collections";
 import _ from "underscore";
 
 const mapStateToProps = (state, props) => ({
-    collection: _.findWhere(state.collections.collections, { slug: props.params.collectionSlug })
-})
+        collection: _.findWhere(state.collections.collections, {slug: props.params.collectionSlug})
+    })
 
 const mapDispatchToProps = ({
     push,
@@ -30,46 +30,46 @@ const mapDispatchToProps = ({
 @connect(mapStateToProps, mapDispatchToProps)
 @title(({ collection }) => collection && collection.name)
 export default class CollectionPage extends Component {
-    componentWillMount () {
+    componentWillMount() {
         this.props.loadCollections();
     }
-    render () {
-        const { collection, params, location, push, replace, goBack } = this.props;
+    render() {
+        const {collection, params, location, push, replace, goBack} = this.props;
         const canEdit = collection && collection.can_write;
         return (
-            <div className="mx4 mt4">
-                <div className="flex align-center">
-                    <HeaderWithBack
-                        name={collection && collection.name}
-                        description={collection && collection.description}
-                        onBack={window.history.length === 1 ?
+                <div className="mx4 mt4">
+                    <div className="flex align-center">
+                        <HeaderWithBack
+                            name={collection && collection.name}
+                            description={collection && collection.description}
+                            onBack={window.history.length === 1 ?
                             () => push("/questions") :
                             () => goBack()
-                        }
-                    />
-                    <div className="ml-auto">
-                        <CollectionActions>
-                            { canEdit && <ArchiveCollectionWidget collectionId={this.props.collection.id} onArchived={this.props.goToQuestions}/> }
-                            { canEdit && <Icon size={18} name="pencil" tooltip="Edit collection" onClick={() => this.props.editCollection(this.props.collection.id)} /> }
-                            { canEdit && <Icon size={18} name="lock" tooltip="Set permissions" onClick={() => this.props.editPermissions(this.props.collection.id)} /> }
-                        </CollectionActions>
+                            }
+                            />
+                        <div className="ml-auto">
+                            <CollectionActions>
+                                { canEdit && <ArchiveCollectionWidget collectionId={this.props.collection.id} onArchived={this.props.goToQuestions}/> }
+                                { canEdit && <Icon size={18} name="pencil" tooltip="编辑集合" onClick={() => this.props.editCollection(this.props.collection.id)} /> }
+                                { canEdit && <Icon size={18} name="lock" tooltip="设置集合权限" onClick={() => this.props.editPermissions(this.props.collection.id)} /> }
+                            </CollectionActions>
+                        </div>
                     </div>
+                    <div className="mt4">
+                        <EntityList
+                            defaultEmptyState="这个集合里没有添加任何问题"
+                            entityType="cards"
+                            entityQuery={{f: "all", collection: params.collectionSlug, ...location.query }}
+                            // use replace when changing sections so back button still takes you back to collections page
+                            onChangeSection={(section) => replace({
+                                ...location,
+                                query: {...location.query, f: section }
+                            })}
+                            showCollectionName={false}
+                            editable={canEdit}
+                            />
                 </div>
-                <div className="mt4">
-                    <EntityList
-                        defaultEmptyState="这个集合里没有添加任何问题"
-                        entityType="cards"
-                        entityQuery={{ f: "all", collection: params.collectionSlug, ...location.query }}
-                        // use replace when changing sections so back button still takes you back to collections page
-                        onChangeSection={(section) => replace({
-                            ...location,
-                            query: { ...location.query, f: section }
-                        })}
-                        showCollectionName={false}
-                        editable={canEdit}
-                    />
                 </div>
-            </div>
-        );
-    }
-}
+                            );
+                }
+            }

@@ -32,20 +32,20 @@ export default class Progress extends Component {
 
     static checkRenderable([{ data: { cols, rows} }]) {
         if (!isNumeric(cols[0])) {
-            throw new Error("Progress visualization requires a number.");
+            throw new Error("进度条需要数字字段.");
         }
     }
 
     static settings = {
         "progress.goal": {
             section: "Display",
-            title: "Goal",
+            title: "目标",
             widget: "number",
             default: 0
         },
         "progress.color": {
             section: "Display",
-            title: "Color",
+            title: "颜色",
             widget: "color",
             default: normal.green
         },
@@ -121,9 +121,9 @@ export default class Progress extends Component {
 
         let barMessage;
         if (value === goal) {
-            barMessage = "Goal met";
+            barMessage = "完成目标";
         } else if (value > goal) {
-            barMessage = "Goal exceeded";
+            barMessage = "突破目标";
         }
 
         const clicked = {

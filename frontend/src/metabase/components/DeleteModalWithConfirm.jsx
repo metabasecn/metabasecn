@@ -36,7 +36,7 @@ export default class DeleteModalWithConfirm extends Component {
         let confirmed = confirmItems.reduce((acc, item, index) => acc && checked[index], true);
         return (
             <ModalContent
-                title={"Delete \"" + objectName + "\"?"}
+                title={"删除 \"" + objectName + "\"?"}
                 onClose={this.props.onClose}
             >
             <div className="px4 pb4">

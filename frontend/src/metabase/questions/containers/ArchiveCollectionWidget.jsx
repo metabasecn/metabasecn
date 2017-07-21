@@ -42,14 +42,14 @@ export default class ArchiveCollectionWidget extends Component {
                 {...this.props}
                 ref="modal"
                 triggerElement={
-                    <Tooltip tooltip="Archive collection">
+                    <Tooltip tooltip="归档集合">
                         <Icon size={18} name="archive" />
                     </Tooltip>
                 }
-                title="Archive this collection?"
+                title="确定归档集合吗?"
                 footer={[
-                    <Button onClick={this._onClose}>Cancel</Button>,
-                    <Button warning onClick={this._onArchive}>Archive</Button>
+                    <Button onClick={this._onClose}>取消</Button>,
+                    <Button warning onClick={this._onArchive}>确定归档</Button>
                 ]}
             >
                 <div className="px4 pb4">集合中的问题也会归档.</div>

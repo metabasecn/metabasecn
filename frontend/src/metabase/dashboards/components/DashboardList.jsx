@@ -50,7 +50,7 @@ class DashboardListItem extends Component {
             </Tooltip>
 
         const favoritingButton =
-            <Tooltip tooltip={favorite ? "Unfavorite" : "Favorite"}>
+            <Tooltip tooltip={favorite ? "取消收藏" : "收藏"}>
                 <Icon
                     className={cx(
                         "flex cursor-pointer ml2 favoriting-button",

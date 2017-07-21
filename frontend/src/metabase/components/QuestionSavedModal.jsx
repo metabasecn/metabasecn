@@ -19,7 +19,7 @@ export default class QuestionSavedModal extends Component {
                 className="Modal-content Modal-content--small NewForm"
             >
                 <div className="Form-inputs mb4">
-                    <button className="Button Button--primary" onClick={this.props.addToDashboardFn}>好的</button>
+                    <button className="Button Button--primary" onClick={this.props.addToDashboardFn}>添加</button>
                     <button className="Button ml3" onClick={this.props.onClose}>不是现在</button>
                 </div>
             </ModalContent>

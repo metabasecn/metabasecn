@@ -27,7 +27,7 @@ export default class RefreshWidget extends Component {
             <PopoverWithTrigger
                 ref="popover"
                 triggerElement={elapsed == null ?
-                    <Tooltip tooltip="Auto-refresh">
+                    <Tooltip tooltip="自动刷新">
                         <ClockIcon width={18} height={18} className={className} />
                     </Tooltip>
                 :

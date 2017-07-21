@@ -47,7 +47,7 @@ class CollectionButton extends Component {
                     { isAdmin &&
                         <div className="absolute top right mt2 mr2 hover-child">
                             <Link to={"/collections/permissions?collectionId=" + id} className="mr1">
-                                <Icon name="lockoutline" tooltip="Set collection permissions" />
+                                <Icon name="lockoutline" tooltip="设置集合权限" />
                             </Link>
                             <ArchiveCollectionWidget collectionId={id} />
                         </div>

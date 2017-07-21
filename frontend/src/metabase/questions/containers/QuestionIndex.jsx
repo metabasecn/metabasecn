@@ -132,7 +132,7 @@ export class QuestionIndex extends Component {
 
                 { showNoSavedQuestionsState && <NoSavedQuestionsState /> }
 
-                { showEverythingElseTitle && <h2 className="mt2 mb2">其他所有没归类的问题</h2> }
+                { showEverythingElseTitle && <h2 className="mt2 mb2">没有归类的问题</h2> }
 
                 <div className={cx({ "hide": !showEntityList })}>
                     {/* EntityList loads `questions` according to the query specified in the url query string */}

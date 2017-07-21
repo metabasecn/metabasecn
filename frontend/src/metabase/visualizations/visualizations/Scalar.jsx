@@ -73,7 +73,7 @@ export default class Scalar extends Component {
 
     static settings = {
         "scalar.locale": {
-            title: "Separator style",
+            title: "数字分割样式",
             widget: "select",
             props: {
                 options: [
@@ -86,19 +86,19 @@ export default class Scalar extends Component {
             default: "en"
         },
         "scalar.decimals": {
-            title: "Number of decimal places",
+            title: "小数位数",
             widget: "number"
         },
         "scalar.prefix": {
-            title: "Add a prefix",
+            title: "添加前缀",
             widget: "input"
         },
         "scalar.suffix": {
-            title: "Add a suffix",
+            title: "添加后缀",
             widget: "input"
         },
         "scalar.scale": {
-            title: "Multiply by a number",
+            title: "乘一个数字",
             widget: "number"
         },
     };

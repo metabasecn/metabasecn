@@ -98,9 +98,9 @@ export const LINE_SETTINGS = {
       widget: "select",
       props: {
           options: [
-              { name: "Line", value: "linear" },
-              { name: "Curve", value: "cardinal" },
-              { name: "Step", value: "step-after" },
+              { name: "直线", value: "linear" },
+              { name: "圆滑曲线", value: "cardinal" },
+              { name: "步进直线", value: "step-after" },
           ]
       },
       getDefault: () => "linear"
@@ -137,13 +137,13 @@ export const STACKABLE_SETTINGS = {
 export const GRAPH_GOAL_SETTINGS = {
   "graph.show_goal": {
       section: "Display",
-      title: "Show goal",
+      title: "显示标线",
       widget: "toggle",
       default: false
   },
   "graph.goal_value": {
       section: "Display",
-      title: "Goal value",
+      title: "标线值",
       widget: "number",
       default: 0,
       getHidden: (series, vizSettings) => vizSettings["graph.show_goal"] !== true,
@@ -154,14 +154,14 @@ export const GRAPH_GOAL_SETTINGS = {
 export const LINE_SETTINGS_2 = {
   "line.missing": {
       section: "Display",
-      title: "Replace missing values with",
+      title: "缺失数据替换",
       widget: "select",
       default: "interpolate",
       getProps: (series, vizSettings) => ({
           options: [
-              { name: "Zero", value: "zero" },
-              { name: "Nothing", value: "none" },
-              { name: "Linear Interpolated", value: "interpolate" },
+              { name: "替换为0", value: "zero" },
+              { name: "替换为空值", value: "none" },
+              { name: "线性插值", value: "interpolate" },
           ]
       })
   },
@@ -196,7 +196,7 @@ export const GRAPH_AXIS_SETTINGS = {
   },
   "graph.x_axis.scale": {
       section: "Axes",
-      title: "X轴尺寸",
+      title: "X轴类型",
       widget: "select",
       default: "ordinal",
       readDependencies: ["graph.x_axis._is_timeseries", "graph.x_axis._is_numeric"],
@@ -207,14 +207,14 @@ export const GRAPH_AXIS_SETTINGS = {
       getProps: (series, vizSettings) => {
           const options = [];
           if (vizSettings["graph.x_axis._is_timeseries"]) {
-              options.push({ name: "Timeseries", value: "timeseries" });
+              options.push({ name: "时间序列", value: "timeseries" });
           }
           if (vizSettings["graph.x_axis._is_numeric"]) {
-              options.push({ name: "Linear", value: "linear" });
-              options.push({ name: "Power", value: "pow" });
-              options.push({ name: "Log", value: "log" });
+              options.push({ name: "等差轴", value: "linear" });
+              options.push({ name: "等比轴", value: "pow" });
+              options.push({ name: "对数轴", value: "log" });
           }
-          options.push({ name: "Ordinal", value: "ordinal" });
+          options.push({ name: "正常轴", value: "ordinal" });
           return { options };
       }
   },
@@ -225,9 +225,9 @@ export const GRAPH_AXIS_SETTINGS = {
       default: "linear",
       getProps: (series, vizSettings) => ({
           options: [
-              { name: "Linear", value: "linear" },
-              { name: "Power", value: "pow" },
-              { name: "Log", value: "log" }
+              { name: "等差轴", value: "linear" },
+              { name: "等比轴", value: "pow" },
+              { name: "对数轴", value: "log" }
           ]
       })
   },

@@ -28,8 +28,8 @@ import { assoc, setIn } from "icepick";
 import _ from "underscore";
 import cx from "classnames";
 
-export const ERROR_MESSAGE_GENERIC = "There was a problem displaying this chart.";
-export const ERROR_MESSAGE_PERMISSION = "Sorry, you don't have permission to see this card."
+export const ERROR_MESSAGE_GENERIC = "加载图片出错";
+export const ERROR_MESSAGE_PERMISSION = "您没有权限访问."
 
 import type { VisualizationSettings} from "metabase/meta/types/Card";
 import type { HoverObject, ClickObject, Series } from "metabase/meta/types/Visualization";
@@ -150,7 +150,7 @@ export default class Visualization extends Component {
         if (state.series[0].card.display !== "table") {
             warnings = warnings.concat(props.series
                 .filter(s => s.data && s.data.rows_truncated != null)
-                .map(s => `Data truncated to ${formatNumber(s.data.rows_truncated)} rows.`));
+                .map(s => `数据行限制: ${formatNumber(s.data.rows_truncated)} 行.`));
         }
         return warnings;
     }
@@ -263,14 +263,14 @@ export default class Visualization extends Component {
         if (!loading && !error) {
             settings = this.props.settings || getSettings(series);
             if (!CardVisualization) {
-                error = "Could not find visualization";
+                error = "找不到图表";
             } else {
                 try {
                     if (CardVisualization.checkRenderable) {
                         CardVisualization.checkRenderable(series, settings);
                     }
                 } catch (e) {
-                    error = e.message || "Could not display this chart with this data.";
+                    error = e.message || "无法用这些数据生成图表.";
                     if (e instanceof ChartSettingsError && this.props.onOpenChartSettings) {
                         error = (
                             <div>
@@ -364,13 +364,13 @@ export default class Visualization extends Component {
                                 <div className="h4 text-bold mb1">Still Waiting...</div>
                                 { isSlow === "usually-slow" ?
                                     <div>
-                                        This usually takes an average of <span style={{whiteSpace: "nowrap"}}>{duration(expectedDuration)}</span>.
+                                        需要一个平均 <span style={{whiteSpace: "nowrap"}}>{duration(expectedDuration)}</span>.
                                         <br />
-                                        (This is a bit long for a dashboard)
+                                        (这是一个比较长的仪表板)
                                     </div>
                                 :
                                     <div>
-                                        This is usually pretty fast, but seems to be taking awhile right now.
+                                       请稍等
                                     </div>
                                 }
                             </div>

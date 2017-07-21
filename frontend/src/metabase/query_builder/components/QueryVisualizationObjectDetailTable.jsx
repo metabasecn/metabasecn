@@ -122,7 +122,7 @@ export default class QueryVisualizationObjectDetailTable extends Component {
         });
 
         if (tableForeignKeys.length < 1) {
-            return (<p className="my4 text-centered">No relationships found.</p>);
+            return (<p className="my4 text-centered">没找到关系</p>);
         }
 
         const fkCountsByTable = foreignKeyCountsByOriginTable(tableForeignKeys);

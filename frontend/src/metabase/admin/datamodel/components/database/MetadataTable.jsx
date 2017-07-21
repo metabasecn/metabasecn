@@ -34,7 +34,7 @@ export default class MetadataTable extends Component {
 
     updateProperty(name, value) {
         this.props.tableMetadata[name] = value;
-        this.setState({ saving: true });
+        this.setState({saving: true});
         this.props.updateTable(this.props.tableMetadata);
     }
 
@@ -62,60 +62,60 @@ export default class MetadataTable extends Component {
         var subTypes;
         if (this.props.tableMetadata.visibility_type) {
             subTypes = (
-                <span id="VisibilitySubTypes" className="border-left mx2">
-                    <span className="mx2 text-uppercase text-grey-3">Why Hide?</span>
-                    {this.renderVisibilityType("Technical Data", "technical")}
-                    {this.renderVisibilityType("Irrelevant/Cruft", "cruft")}
-                </span>
-            );
+                    <span id="VisibilitySubTypes" className="border-left mx2">
+                        <span className="mx2 text-uppercase text-grey-3">隐藏原因?</span>
+                        {this.renderVisibilityType("系统数据", "technical")}
+                        {this.renderVisibilityType("与业务不相关的数据", "cruft")}
+                    </span>
+                    );
         }
         return (
-            <span id="VisibilityTypes">
-                {this.renderVisibilityType("Queryable", null)}
-                {this.renderVisibilityType("Hidden", "hidden", true)}
-                {subTypes}
-            </span>
-        );
+                <span id="VisibilityTypes">
+                    {this.renderVisibilityType("使用中", null)}
+                    {this.renderVisibilityType("隐藏", "隐藏", true)}
+                    {subTypes}
+                </span>
+                );
     }
 
     render() {
-        const { tableMetadata } = this.props;
+        const {tableMetadata} = this.props;
         if (!tableMetadata) {
             return false;
         }
 
         return (
-            <div className="MetadataTable px3 flex-full">
-                <div className="MetadataTable-title flex flex-column bordered rounded">
-                    <Input className="AdminInput TableEditor-table-name text-bold border-bottom rounded-top" type="text" value={tableMetadata.display_name || ""} onBlurChange={this.onNameChange}/>
-                    <Input className="AdminInput TableEditor-table-description rounded-bottom" type="text" value={tableMetadata.description || ""} onBlurChange={this.onDescriptionChange} placeholder="没有表描述" />
+                <div className="MetadataTable px3 flex-full">
+                    <div className="MetadataTable-title flex flex-column bordered rounded">
+                        <Input className="AdminInput TableEditor-table-name text-bold border-bottom rounded-top" type="text" value={tableMetadata.display_name || ""} onBlurChange={this.onNameChange}/>
+                        <Input className="AdminInput TableEditor-table-description rounded-bottom" type="text" value={tableMetadata.description || ""} onBlurChange={this.onDescriptionChange} placeholder="没有表描述" />
+                    </div>
+                    <div className="MetadataTable-header flex align-center py2 text-grey-3">
+                        <span className="mx1 text-uppercase">可见性</span>
+                        {this.renderVisibilityWidget()}
+                        <span className="flex-align-right flex align-center">
+                            <span className="text-uppercase mr1">数据库使用量</span>
+                            <ProgressBar percentage={tableMetadata.metadataStrength} />
+                        </span>
+                    </div>
+                    <div className={"mt2 " + (this.isHidden() ? "disabled" : "")}>
+                        <SegmentsList
+                            tableMetadata={tableMetadata}
+                            onRetire={this.props.onRetireSegment}
+                            />
+                        <MetricsList
+                            tableMetadata={tableMetadata}
+                            onRetire={this.props.onRetireMetric}
+                            />
+                        <ColumnsList
+                            tableMetadata={tableMetadata}
+                            idfields={this.props.idfields}
+                            updateField={this.props.updateField}
+                            updateFieldSpecialType={this.props.updateFieldSpecialType}
+                            updateFieldTarget={this.props.updateFieldTarget}
+                            />
+                    </div>
                 </div>
-                <div className="MetadataTable-header flex align-center py2 text-grey-3">
-                    <span className="mx1 text-uppercase">Visibility</span>
-                    {this.renderVisibilityWidget()}
-                    <span className="flex-align-right flex align-center">
-                        <span className="text-uppercase mr1">数据库使用量</span>
-                        <ProgressBar percentage={tableMetadata.metadataStrength} />
-                    </span>
-                </div>
-                <div className={"mt2 " + (this.isHidden() ? "disabled" : "")}>
-                    <SegmentsList
-                        tableMetadata={tableMetadata}
-                        onRetire={this.props.onRetireSegment}
-                    />
-                    <MetricsList
-                        tableMetadata={tableMetadata}
-                        onRetire={this.props.onRetireMetric}
-                    />
-                    <ColumnsList
-                        tableMetadata={tableMetadata}
-                        idfields={this.props.idfields}
-                        updateField={this.props.updateField}
-                        updateFieldSpecialType={this.props.updateFieldSpecialType}
-                        updateFieldTarget={this.props.updateFieldTarget}
-                    />
-                </div>
-            </div>
-        );
+                );
     }
 }

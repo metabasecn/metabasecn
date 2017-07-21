@@ -45,14 +45,14 @@ export default class Funnel extends Component {
             throw new MinRowsError(1, rows.length);
         }
         if (!settings["funnel.dimension"] || !settings["funnel.metric"]) {
-            throw new ChartSettingsError("Which fields do you want to use?", "Data", "Choose fields");
+            throw new ChartSettingsError("那些字段需要使用到", "Data", "选择字段");
         }
     }
 
     static settings = {
         "funnel.dimension": {
             section: "Data",
-            title: "Step",
+            title: "步",
             ...dimensionSetting("funnel.dimension"),
             dashboard: false,
             useRawSeries: true,
@@ -65,7 +65,7 @@ export default class Funnel extends Component {
             useRawSeries: true,
         },
         "funnel.type": {
-            title: "Funnel type",
+            title: "漏斗图类型",
             section: "Display",
             widget: "select",
             props: {

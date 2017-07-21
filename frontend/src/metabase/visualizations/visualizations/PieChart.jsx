@@ -46,7 +46,7 @@ export default class PieChart extends Component {
 
     static checkRenderable([{ data: { cols, rows} }], settings) {
         if (!settings["pie.dimension"] || !settings["pie.metric"]) {
-            throw new ChartSettingsError("Which columns do want to use?", "Data");
+            throw new ChartSettingsError("要使用哪些列？", "Data");
         }
     }
 
@@ -63,18 +63,18 @@ export default class PieChart extends Component {
         },
         "pie.show_legend": {
             section: "Display",
-            title: "Show legend",
+            title: "显示文字结果",
             widget: "toggle"
         },
         "pie.show_legend_perecent": {
             section: "Display",
-            title: "Show percentages in legend",
+            title: "文字结果显示百分比",
             widget: "toggle",
             default: true
         },
         "pie.slice_threshold": {
             section: "Display",
-            title: "Minimum slice percentage",
+            title: "最低百分比",
             widget: "number"
         },
     }
@@ -173,7 +173,7 @@ export default class PieChart extends Component {
             title = formatDimension(slices[hovered.index].key);
             value = formatMetric(slices[hovered.index].value);
         } else {
-            title = "Total";
+            title = "总共";
             value = formatMetric(total);
         }
 

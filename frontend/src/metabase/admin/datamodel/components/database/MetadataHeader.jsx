@@ -61,11 +61,11 @@ export default class MetadataHeader extends Component {
         return (
             <div className="MetadataEditor-header flex align-center flex-no-shrink">
                 <div className="MetadataEditor-headerSection py2 h2">
-                    <span className="text-grey-4">Current database:</span> {this.renderDbSelector()}
+                    <span className="text-grey-4">最近使用的数据库:</span> {this.renderDbSelector()}
                 </div>
                 <div className="MetadataEditor-headerSection flex flex-align-right align-center flex-no-shrink">
                     <SaveStatus ref="status" />
-                    <span className="mr1">显示源数据结构</span>
+                    <span className="mr1">查看表结构</span>
                     <Toggle value={this.props.isShowingSchema} onChange={this.props.toggleShowSchema} />
                 </div>
             </div>

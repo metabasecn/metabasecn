@@ -121,7 +121,7 @@ export default class Map extends Component {
             }
         } else if (settings["map.type"] === "region"){
             if (!settings["map.dimension"] || !settings["map.metric"]) {
-                throw new ChartSettingsError("请在图表设置中选择区域和度量列.", "Data");
+                throw new ChartSettingsError("请在图表设置中选择经度和纬度列.", "Data");
             }
         }
     }

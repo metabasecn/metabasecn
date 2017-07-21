@@ -57,7 +57,7 @@ export default class RecentViews extends Component {
                 :
                     <div className="flex flex-column layout-centered text-normal text-grey-2">
                         <p className="p3 text-centered text-grey-2" style={{ "maxWidth": "100%" }}>
-                            You haven't looked at any dashboards or questions recently
+                            您最近没有查看任何仪表板或问题
                         </p>
                     </div>
                 }
