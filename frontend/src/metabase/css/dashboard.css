@@ -1,0 +1,341 @@
+:root {
+  --night-mode-color: rgba(255, 255, 255, 0.86);
+}
+.Dashboard {
+    background-color: #f9fbfc;
+}
+
+.DashboardHeader {
+  background-color: white;
+  border-bottom: var(--border-size) var(--border-style) var(--border-color);
+}
+
+.Dash-wrapper {
+    width: 100%;
+}
+
+@media screen and (--breakpoint-min-sm) {
+   .Dash-wrapper { max-width: var(--sm-width); }
+}
+
+@media screen and (--breakpoint-min-md) {
+   .Dash-wrapper { max-width: var(--md-width); }
+}
+
+@media screen and (--breakpoint-min-lg) {
+   .Dash-wrapper { max-width: var(--lg-width); }
+}
+
+/* Fullscreen mode */
+.Dashboard.Dashboard--fullscreen .Header-button {
+  color: #D2DBE4;
+}
+
+.Dashboard.Dashboard--fullscreen .DashboardHeader {
+  background-color: transparent;
+  border: none;
+}
+.Dashboard.Dashboard--fullscreen .Header-title-description {
+  display: none;
+}
+
+/* Night mode */
+.Dashboard.Dashboard--night {
+  background-color: rgb(34, 37, 39);
+}
+
+.Dashboard.Dashboard--night .Header-button,
+.Dashboard.Dashboard--night .Header-button svg {
+    color: rgba(151, 151, 151, 0.3);
+}
+
+
+.Dashboard.Dashboard--fullscreen .fullscreen-normal-text {
+  color: #3f3a3a;
+  transition: color 1s linear;
+}
+
+.Dashboard.Dashboard--night.Dashboard--fullscreen .fullscreen-night-text {
+  color: var(--night-mode-color);
+  transition: color 1s linear;
+}
+
+.Dashboard.Dashboard--night .DashCard .Card svg text {
+  fill: rgba(255, 255, 255, 0.86) !important;
+}
+
+.Dashboard.Dashboard--night .DashCard .Card {
+  background-color: rgb(54, 58, 61);
+  border: 1px solid rgb(46, 49, 52);
+}
+
+.Dashboard.Dashboard--night .enable-dots-onhover .dc-tooltip circle.dot:hover,
+.Dashboard.Dashboard--night .enable-dots .dc-tooltip circle.dot {
+  fill: currentColor;
+}
+
+/* Night mode transition */
+.Dashboard.Dashboard--fullscreen,
+.Dashboard.Dashboard--fullscreen .DashCard .Card {
+  transition: background-color 1s linear, border 1s linear;
+}
+
+.DashboardGrid {
+  margin-top: 1em;
+}
+
+.DashCard {
+  position: relative;
+  z-index: 1;
+}
+
+.DashCard .Card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid rgb(219, 219, 219);
+}
+
+.DashCard .Card.Card--slow {
+    border-color: var(--gold-color);
+}
+
+.DashCard .Card > * {
+    transition: opacity 0.5s linear;
+}
+.DashCard .Card.Card--unmapped > * {
+    opacity: 0.25;
+}
+
+.Dash--editing .DashCard .Card {
+    pointer-events: none;
+    transition: border .3s, background-color .3s;
+}
+.Dash--editing.Dash--editingParameter .DashCard .Card {
+    pointer-events: auto;
+}
+
+@keyframes fade-out-yellow {
+    from {
+        background-color: rgba(255, 250, 243, 1.0);
+    }
+    to {
+        background-color: rgba(255, 255, 255, 1.0);
+    }
+}
+
+.Dash--editing .DashCard .Card.Card--recent {
+    animation-duration: 30s;
+    animation-name: fade-out-yellow;
+}
+
+.Dash--editing .DashCard:hover .Card .Card-heading {
+  z-index: 2;
+}
+
+/* Google Maps widgets */
+.DashCard .gm-style-mtc,
+.DashCard .gm-bundled-control,
+.DashCard .PinMapUpdateButton,
+.leaflet-container .leaflet-control-container {
+  opacity: 0.01;
+  transition: opacity 0.3s linear;
+}
+.DashCard:hover .gm-style-mtc,
+.DashCard:hover .gm-bundled-control,
+.DashCard:hover .PinMapUpdateButton,
+.leaflet-container:hover .leaflet-control-container {
+  opacity: 1;
+}
+
+.Dash--editing .PinMap {
+  /* allow map to pan. need to stopPropagation in PinMap to prevent weird dragging interaction */
+  pointer-events: all;
+}
+
+.PinMapUpdateButton--disabled {
+  pointer-events: none;
+  color: color(var(--base-grey) shade(10%));
+}
+
+.Dash--editing .DashCard .Card {
+    user-select: none;
+}
+
+.DashCard .Card {
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.08);
+}
+
+.Dash--editing .DashCard.dragging .Card {
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+}
+
+.Dash--editing .DashCard.dragging,
+.Dash--editing .DashCard.resizing {
+    z-index: 2;
+}
+
+.Dash--editing .DashCard.dragging .Card,
+.Dash--editing .DashCard.resizing .Card {
+    background-color: #E5F1FB !important;
+    border: 1px solid var(--brand-color);
+}
+
+.DashCard .DashCard-actions {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s linear;
+}
+
+.Dash--editing .DashCard:hover .DashCard-actions {
+  height: initial;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.Dash--editing .DashCard .Visualization-slow-spinner {
+    position: absolute;
+    right: -2px;
+    top: -2px;
+}
+.Dash--editing .DashCard:hover .Visualization-slow-spinner {
+    opacity: 0;
+    transition: opacity .15s linear;
+}
+
+.Dash--editing .DashCard.dragging .DashCard-actions,
+.Dash--editing .DashCard.resizing .DashCard-actions {
+    opacity: 0;
+    transition: opacity .3s linear;
+}
+
+.Dash--editing .DashCard {
+    transition: transform .3s;
+}
+
+.Dash--editing .DashCard.dragging,
+.Dash--editing .DashCard.resizing {
+    transition: transform 0s;
+}
+
+.Dash--editing .DashCard {
+    cursor: move;
+}
+
+.Dash--editing .DashCard .react-resizable-handle {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
+}
+
+.Dash--editing .DashCard .react-resizable-handle:after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  bottom: 10px;
+  right: 10px;
+  border-bottom: 2px solid color(var(--base-grey) shade(20%));
+  border-right: 2px solid color(var(--base-grey) shade(20%));
+  border-bottom-right-radius: 2px;
+  transition: opacity .2s;
+  opacity: 0.01;
+}
+
+.Dash--editing .DashCard .react-resizable-handle:hover:after {
+  border-color: color(var(--base-grey) shade(40%));
+}
+
+.Dash--editing .DashCard:hover .react-resizable-handle:after {
+  opacity: 1;
+}
+
+.Dash--editing .DashCard.dragging .react-resizable-handle:after,
+.Dash--editing .DashCard.resizing .react-resizable-handle:after {
+  opacity: 0.01;
+}
+
+.Dash--editing .react-grid-placeholder {
+    z-index: 0;
+    background-color: #F2F2F2;
+    transition: all 0.15s linear;
+}
+
+.Dash--editing .Card-title {
+    pointer-events: none;
+}
+
+/* ensure action buttons do not respond to events when dragging */
+.Dash--editing.Dash--dragging .DashCard-actions {
+    pointer-events: none !important;
+}
+
+.Modal.AddSeriesModal {
+  height: 80%;
+  max-height: 600px;
+  width: 80%;
+  max-width: 1024px;
+}
+
+/*
+
+  fullscreen text size modifications
+
+*/
+
+/*
+  increase the base font size in fullscreen mode to bump things up to
+  accomodate for viewing distance on TVs etc
+*/
+@media screen and (min-width: 1280px) {
+  .Dashboard.Dashboard--fullscreen { font-size: 1.2em; }
+  /* keep the dashboard header title from being overwhelmingly large */
+  .Dashboard.Dashboard--fullscreen .Header-title-name { font-size: 1em; }
+
+  .Dashboard.Dashboard--fullscreen .fullscreen-text-small .LegendItem {
+    font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 1540px) {
+  .Dashboard.Dashboard--fullscreen { font-size: 1.4em; }
+}
+
+
+/* what for to print the dashboards */
+@media print {
+    header,
+    nav {
+        display: none;
+    }
+    .DashCard .Card {
+      box-shadow: none;
+      border-color: #a1a1a1;
+    }
+    /* improve label contrast */
+    .dc-chart .axis .tick text,
+    .dc-chart .x-axis-label,
+    .dc-chart .y-axis-label {
+      fill: #222222;
+    }
+}
+
+@media print and (orientation: portrait) {
+    html {
+        width: 8.5in;
+    }
+}
+@media print and (orientation: landscape) {
+    html {
+        width: 11in;
+    }
+}
+
+@page { margin: 1cm; }

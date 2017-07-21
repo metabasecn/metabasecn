@@ -1,0 +1,80 @@
+
+.Header-title {
+    width: 455px;
+}
+
+.Header-title-name {
+    font-size: 1.24em;
+    color: var(--grey-text-color);
+}
+
+.Header-attribution {
+    display: none; /* disabled */
+    color: #ADADAD;
+    margin-bottom: 0.5em;
+}
+
+.Header-buttonSection {
+    padding-right: 1em;
+    margin-right: 1em;
+    border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+.Header-buttonSection:last-child {
+    padding-right: 0;
+    margin-right: 0;
+    border-right: none;
+}
+
+.Header-button {
+    margin-right: 1.5em;
+}
+
+.Header-button:last-child {
+    margin-right: 0;
+}
+
+.EditHeader {
+    background-color: #6CAFED;
+}
+
+.EditHeader.EditHeader--admin {
+    background-color: var(--admin-nav-bg-color-tint);
+}
+
+.EditHeader-title {
+    font-weight: 700;
+    color: white;
+}
+
+.EditHeader-subtitle {
+    color: rgba(255,255,255,0.5);
+}
+
+.EditHeader .Button {
+    color: white;
+    border: none;
+    font-size: 1em;
+    text-transform: capitalize;
+    background-color: rgba(255,255,255,0.1);
+    margin-left: 0.75em;
+}
+
+.EditHeader .Button--primary {
+    background-color: white;
+    color: var(--brand-color);
+}
+
+.EditHeader.EditHeader--admin .Button--primary {
+  background-color: white;
+  color: var(--70-percent-black);
+}
+
+.EditHeader .Button:hover {
+    color: white;
+    background-color: var(--brand-color);
+}
+
+.EditHeader.EditHeader--admin .Button:hover {
+  background-color: var(--admin-nav-bg-color);
+}

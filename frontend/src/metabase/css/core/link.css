@@ -1,0 +1,26 @@
+:root {
+  --default-link-color: #4A90E2;
+}
+
+.no-decoration, :local(.no-decoration) {
+    text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--default-link-color);
+}
+.link:hover {
+  text-decoration: underline;
+}
+.link--nohover:hover {
+  text-decoration: none;
+}
+
+.expand-clickable {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  padding: 0.5em;
+  margin: -0.5em;
+}
