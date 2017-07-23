@@ -99,7 +99,7 @@ export default class SetUserPassword extends Component {
 
                     <FormField fieldName="password" formError={formError}>
                         <FormLabel title="新密码" fieldName="password" formError={formError} ></FormLabel>
-                        <span style={{fontWeight: "400"}} className="Form-label Form-offset">{passwordComplexity}</span>
+                        <span style={{fontWeight: "400"}} className="Form-label Form-offset">最少6个字符并且包含数字</span>
                         <input ref="password" type="password" className="Form-input Form-offset full" name="password" placeholder="请确保密码强度够安全" onChange={this.onChange.bind(this)} required />
                         <span className="Form-charm"></span>
                     </FormField>

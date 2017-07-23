@@ -53,9 +53,9 @@ function AddGroupRow({ text, onCancelClicked, onCreateClicked, onTextChange }) {
 
 function DeleteGroupModal({ group, onConfirm = () => {} , onClose = () => {} }) {
     return (
-        <ModalContent title="删除组?" onClose={onClose}>
+        <ModalContent title="删除团队?" onClose={onClose}>
             <p className="px4 pb4">
-               确定删除组？组成员将丢失基于这个组的任何权限设置，并且无法恢复。
+               确定删除团队？成员将丢失基于这个团队的任何权限设置，并且无法恢复。
             </p>
             <div className="Form-actions">
                 <button className="Button Button--danger" onClick={() => { onClose(); onConfirm(group); }}>
@@ -74,7 +74,7 @@ function ActionsPopover({ group, onEditGroupClicked, onDeleteGroupClicked }) {
         <PopoverWithTrigger className="block" triggerElement={<Icon className="text-grey-1" name="ellipsis" />}>
             <ul className="UserActionsSelect">
                 <li className="pt1 pb2 px2 bg-brand-hover text-white-hover cursor-pointer" onClick={onEditGroupClicked.bind(null, group)}>
-                    编辑组名
+                    编辑团队名
                 </li>
                 <li className="pt1 pb2 px2 bg-brand-hover text-white-hover cursor-pointer text-error">
                     <ModalWithTrigger triggerElement="删除组">
@@ -151,7 +151,7 @@ function GroupsTable({ groups, text, groupBeingEdited, showAddGroupRow, onAddGro
                        onEditGroupClicked, onDeleteGroupClicked, onEditGroupTextChange, onEditGroupCancelClicked, onEditGroupDoneClicked }) {
 
     return (
-        <AdminContentTable columnTitles={["Group name", "Members"]}>
+        <AdminContentTable columnTitles={["团队名", "成员数量"]}>
             {showAddGroupRow ? (
                  <AddGroupRow text={text} onCancelClicked={onAddGroupCanceled} onCreateClicked={onAddGroupCreateButtonClicked} onTextChange={onAddGroupTextChanged} />
              ) : null}
@@ -306,10 +306,10 @@ export default class GroupsListing extends Component {
 
         return (
             <AdminPaneLayout
-                title="Groups"
-                buttonText="新建组"
+                title="团队"
+                buttonText="新建团队"
                 buttonAction={this.state.showAddGroupRow ? null : this.onCreateAGroupButtonClicked.bind(this)}
-                description="您可以使用组来控制用户对数据的访问。将用户分组，然后转到权限部分控制每个组的访问权限。管理员和所有用户组是不能删除的特殊默认组。"
+                description="您可以使用组来控制用户对数据的访问。将用户分组，然后转到权限部分控制每个组的访问权限。Administrators和所有All Users是不能删除的特殊默认组。"
             >
                 <GroupsTable
                     groups={groups}

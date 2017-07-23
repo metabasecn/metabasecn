@@ -11,7 +11,7 @@
   (:import java.util.TimeZone))
 
 (defsetting check-for-updates
-  "Identify when new versions of Metabase are available."
+  "检查更新如果有新版本."
   :type    :boolean
   :default true)
 

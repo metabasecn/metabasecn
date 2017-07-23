@@ -91,10 +91,10 @@ function getPermissionWarning(getter, entityType, defaultGroup, permissions, gro
     let perm = value || getter(permissions, groupId, entityId);
     let defaultPerm = getter(permissions, defaultGroup.id, entityId);
     if (perm === "controlled" && defaultPerm === "controlled") {
-        return `  "${defaultGroup.name}" group may have access to a different set of ${entityType} than this group, which may give this group additional access to some ${entityType}.`;
+        return `  "${defaultGroup.name}" 团队具有不同的${entityType} 权限,获得额外的访问权限 ${entityType}.`;
     }
     if (hasGreaterPermissions(defaultPerm, perm)) {
-        return `The "${defaultGroup.name}" group has a higher level of access than this, which will override this setting. You should limit or revoke the "${defaultGroup.name}" group's access to this item.`;
+        return ` "${defaultGroup.name}" 团队具有比这个团队更高的访问权限, 团队 "${defaultGroup.name}" 的权限将被覆盖`;
     }
     return null;
 }
@@ -259,7 +259,7 @@ export const getTablesPermissionsGrid = createSelector(
             groups,
             permissions: {
                 "fields": {
-                    header: "Data Access",
+                    header: "数据访问",
                     options(groupId, entityId) {
                         return [OPTION_ALL, OPTION_NONE]
                     },
@@ -318,7 +318,7 @@ export const getSchemasPermissionsGrid = createSelector(
             groups,
             permissions: {
                 "tables": {
-                    header: "Data Access",
+                    header: "数据访问",
                     options(groupId, entityId) {
                         return [OPTION_ALL, OPTION_CONTROLLED, OPTION_NONE]
                     },
@@ -352,7 +352,7 @@ export const getSchemasPermissionsGrid = createSelector(
                     schemaName
                 },
                 name: schemaName,
-                link: { name: "View tables", url: `/admin/permissions/databases/${databaseId}/schemas/${encodeURIComponent(schemaName)}/tables`}
+                link: { name: "设置表权限", url: `/admin/permissions/databases/${databaseId}/schemas/${encodeURIComponent(schemaName)}/tables`}
             }))
         }
     }
@@ -374,7 +374,7 @@ export const getDatabasesPermissionsGrid = createSelector(
             groups,
             permissions: {
                 "schemas": {
-                    header: "Data Access",
+                    header: "数据访问",
                     options(groupId, entityId) {
                         return [OPTION_ALL, OPTION_CONTROLLED, OPTION_NONE]
                     },
@@ -408,7 +408,7 @@ export const getDatabasesPermissionsGrid = createSelector(
                     }
                 },
                 "native": {
-                    header: "SQL Queries",
+                    header: "数据更改",
                     options(groupId, entityId) {
                         if (getSchemasPermission(permissions, groupId, entityId) === "none") {
                             return [OPTION_NONE];
@@ -443,11 +443,11 @@ export const getDatabasesPermissionsGrid = createSelector(
                     name: database.name,
                     link:
                         schemas.length === 0 || (schemas.length === 1 && schemas[0] === "") ?
-                            { name: "View tables", url: `/admin/permissions/databases/${database.id}/tables` }
+                            { name: "设置表权限", url: `/admin/permissions/databases/${database.id}/tables` }
                         : schemas.length === 1 ?
-                            { name: "View tables", url: `/admin/permissions/databases/${database.id}/schemas/${schemas[0]}/tables` }
+                            { name: "设置表权限", url: `/admin/permissions/databases/${database.id}/schemas/${schemas[0]}/tables` }
                         :
-                            { name: "View schemas", url: `/admin/permissions/databases/${database.id}/schemas`}
+                            { name: "设置表权限", url: `/admin/permissions/databases/${database.id}/schemas`}
                 }
             })
         }

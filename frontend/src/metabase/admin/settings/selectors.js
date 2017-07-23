@@ -21,26 +21,26 @@ const SECTIONS = [
         settings: []
     },
     {
-        name: "General",
+        name: "常用设置",
         settings: [
             {
-                key: "site-name",
+                key: "网站名",
                 display_name: "Site Name",
                 type: "string"
             },
             {
-                key: "site-url",
+                key: "网站地址",
                 display_name: "Site URL",
                 type: "string"
             },
             {
-                key: "admin-email",
-                display_name: "Email Address for Help Requests",
+                key: "管理员邮箱",
+                display_name: "用以接收使用反馈",
                 type: "string"
             },
             {
                 key: "report-timezone",
-                display_name: "Report Timezone",
+                display_name: "时区设置",
                 type: "select",
                 options: [
                     { name: "Database Default", value: "" },
@@ -52,7 +52,7 @@ const SECTIONS = [
             },
             {
                 key: "anon-tracking-enabled",
-                display_name: "Anonymous Tracking",
+                display_name: "追踪反馈",
                 type: "boolean"
             },
             {
@@ -63,17 +63,17 @@ const SECTIONS = [
         ]
     },
     {
-        name: "Updates",
+        name: "更新",
         settings: [
             {
                 key: "check-for-updates",
-                display_name: "Check for updates",
+                display_name: "检查更新",
                 type: "boolean"
             }
         ]
     },
     {
-        name: "Email",
+        name: "邮箱服务设置",
         settings: [
             {
                 key: "email-smtp-host",
@@ -147,7 +147,7 @@ const SECTIONS = [
         ]
     },
     {
-        name: "Single Sign-On",
+        name: "谷歌身份验证群登录设置",
         settings: [
             {
                 key: "google-auth-client-id"
@@ -158,47 +158,47 @@ const SECTIONS = [
         ]
     },
     {
-        name: "Maps",
+        name: "地图",
         settings: [
             {
                 key: "map-tile-server-url",
-                display_name: "Map tile server URL",
-                note: "Metabase uses OpenStreetMaps by default.",
+                display_name: "地图服务器地址",
+                note: "Metabase 使用默认的地图服务器.",
                 type: "string"
             },
             {
                 key: "custom-geojson",
-                display_name: "Custom Maps",
-                description: "Add your own GeoJSON files to enable different region map visualizations",
+                display_name: "自定义地图",
+                description: "使用自定义的JSONgeo数据",
                 widget: CustomGeoJSONWidget,
                 noHeader: true
             }
         ]
     },
     {
-        name: "Public Sharing",
+        name: "共享数据",
         settings: [
             {
                 key: "enable-public-sharing",
-                display_name: "Enable Public Sharing",
+                display_name: "是否允许共享",
                 type: "boolean"
             },
             {
                 key: "-public-sharing-dashboards",
-                display_name: "Shared Dashboards",
+                display_name: "共享仪表板",
                 widget: PublicLinksDashboardListing,
                 getHidden: (settings) => !settings["enable-public-sharing"]
             },
             {
                 key: "-public-sharing-questions",
-                display_name: "Shared Questions",
+                display_name: "共享问题",
                 widget: PublicLinksQuestionListing,
                 getHidden: (settings) => !settings["enable-public-sharing"]
             }
         ]
     },
     {
-        name: "Embedding in other Applications",
+        name: "嵌入到其他软件",
         settings: [
             {
                 key: "enable-embedding",
@@ -214,25 +214,25 @@ const SECTIONS = [
             },
             {
                 key: "enable-embedding",
-                display_name: "Enable Embedding Metabase in other Applications",
+                display_name: "是否允许嵌入",
                 type: "boolean",
                 getHidden: (settings) => !settings["enable-embedding"]
             },
             {
                 key: "embedding-secret-key",
-                display_name: "Embedding secret key",
+                display_name: "秘钥",
                 widget: SecretKeyWidget,
                 getHidden: (settings) => !settings["enable-embedding"]
             },
             {
                 key: "-embedded-dashboards",
-                display_name: "Embedded Dashboards",
+                display_name: "是否允许嵌入仪表板",
                 widget: EmbeddedDashboardListing,
                 getHidden: (settings) => !settings["enable-embedding"]
             },
             {
                 key: "-embedded-questions",
-                display_name: "Embedded Questions",
+                display_name: "是否允许嵌入问题查询",
                 widget: EmbeddedQuestionListing,
                 getHidden: (settings) => !settings["enable-embedding"]
             }
@@ -243,12 +243,12 @@ const SECTIONS = [
         settings: [
             {
                 key: "enable-query-caching",
-                display_name: "Enable Caching",
+                display_name: "缓存设置",
                 type: "boolean"
             },
             {
                 key: "query-caching-min-ttl",
-                display_name: "Minimum Query Duration",
+                display_name: "查询超时",
                 type: "number",
                 getHidden: (settings) => !settings["enable-query-caching"],
                 allowValueCollection: true
@@ -262,7 +262,7 @@ const SECTIONS = [
             },
             {
                 key: "query-caching-max-kb",
-                display_name: "Max Cache Entry Size",
+                display_name: "最大缓存",
                 type: "number",
                 getHidden: (settings) => !settings["enable-query-caching"],
                 allowValueCollection: true

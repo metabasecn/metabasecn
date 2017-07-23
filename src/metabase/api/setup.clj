@@ -121,7 +121,7 @@
       :triggered   :always}
      {:title       "设置slack服务"
       :group       "Get connected"
-      :description "Does your team use Slack?  If so, you can send automated updates via pulses and ask questions with MetaBot."
+      :description "您的团队试用slack吗?如果试用，你可以自动更新和试用metabot（metabase机器人服务）问问题"
       :link        "/admin/settings/slack"
       :completed   (slack/slack-configured?)
       :triggered   :always}

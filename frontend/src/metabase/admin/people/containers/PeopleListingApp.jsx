@@ -369,11 +369,11 @@ export default class PeopleListingApp extends Component {
                         <table className="ContentTable">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>姓名</th>
                                     <th></th>
-                                    <th>Email</th>
-                                    <th>Groups</th>
-                                    <th>Last Login</th>
+                                    <th>邮箱</th>
+                                    <th>属组</th>
+                                    <th>最后登录</th>
                                     <th></th>
                                 </tr>
                             </thead>
